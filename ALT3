@@ -1,0 +1,77 @@
+import tkinter as tk
+import math
+
+# Function to draw a single hexagon
+def draw_hexagon(canvas, x, y, size, color="black", fill="white"):
+    """
+    Draws a hexagon on the canvas.
+    :param canvas: Tkinter Canvas object
+    :param x: x-coordinate of the center
+    :param y: y-coordinate of the center
+    :param size: Length of one side of the hexagon
+    :param color: Outline color of the hexagon
+    :param fill: Fill color of the hexagon
+    """
+    # Calculate the vertices of the hexagon
+    points = []
+    for i in range(6):
+        angle = math.radians(60 * i)
+        px = x + size * math.cos(angle)
+        py = y + size * math.sin(angle)
+        points.extend((px, py))
+    
+    # Draw the hexagon
+    canvas.create_polygon(points, outline=color, fill=fill, width=1)
+
+# Function to draw a hexagonal grid
+def draw_hex_grid(canvas, rows, cols, hex_size, start_x=30, start_y=30):
+    """
+    Draws a hexagonal grid on the canvas.
+    :param canvas: Tkinter Canvas object
+    :param rows: Number of rows in the grid
+    :param cols: Number of columns in the grid
+    :param hex_size: Length of one side of each hexagon
+    :param start_x: Starting x-coordinate for the grid
+    :param start_y: Starting y-coordinate for the grid
+    """
+    # Calculate the vertical and horizontal spacing between hexagons
+    vert_spacing = math.sqrt(3) * hex_size  # Height of a hexagon
+    horiz_spacing = 1.5 * hex_size          # Horizontal distance between centers
+
+    for row in range(rows):
+        for col in range(cols):
+            # Calculate the center of each hexagon
+            x = start_x + col * horiz_spacing
+            y = start_y + row * vert_spacing
+
+            # Offset every other row to create the staggered effect
+            if col % 2 == 1:
+                y += vert_spacing / 2
+
+            # Draw the hexagon
+            draw_hexagon(canvas, x, y, hex_size)
+
+# Main function to create the Tkinter window and canvas
+def main():
+    # Create the main Tkinter window
+    root = tk.Tk()
+    root.title("Hexagonal Grid")
+
+    # Create a canvas to draw on
+    canvas_width = 800
+    canvas_height = 600
+    canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="white")
+    canvas.pack()
+
+    # Draw the hexagonal grid
+    rows = 60  # Number of rows
+    cols = 90  # Number of columns
+    hex_size = 5  # Size of each hexagon
+    draw_hex_grid(canvas, rows, cols, hex_size)
+
+    # Start the Tkinter event loop
+    root.mainloop()
+
+# Run the program
+if __name__ == "__main__":
+    main()
