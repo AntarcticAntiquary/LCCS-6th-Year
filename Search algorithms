@@ -1,0 +1,18 @@
+# Linear search algorithm
+
+words = ['cat', 'dog', 'bird', 'parrot', 'lion', 'tiger', 'bear', 'bird']
+nums = [1612, 1048, 76, 666, 1, 12, 12]
+
+def linear_search_for (target, the_list): # Function to search linearly through a list for a target value
+    length = len(the_list)
+    index_list = []
+    for index in range(length): # Iterate through the list (using length so that we can record the index)
+        if the_list[index] == target: # If target is found, record position
+            index_list.append(index)#
+    if index_list == []: # If target is not found in list
+        print('Value not found')
+    elif len(index_list) > 1: # If target was found in multiple positions
+        print('Value', target, 'found at positions', index_list)
+    else: # If target is found in one position
+        print('Value', target, 'found at position', index_list[0])
+    return index_list # Return position(s) target was found at
