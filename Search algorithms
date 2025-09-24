@@ -19,28 +19,42 @@ def linear_search_for (target, the_list): # Function to search linearly through 
 
 
 # Binary search algorithm
-# Works only with a sorted, numerical list
-# In progress
+# Not in function yet
+# I should do that tbh
 
-ordered_nums = [3, 17, 21, 39, 57, 63, 71, 100]
+order = [7, 32, 44, 57, 64, 78, 88, 92, 104, 113, 128]
 
-def binary_search (target, the_list):
-    keep_going = True
-    working_list = the_list
-    index = -1
-    while keep_going:
-        length = len(working_list)
-        median = working_list[int(length/2)]
-        if median == target:
-            index = the_list.index(target)
-        elif median > target:
-            for element in working_list:
-                if element < median:
-                    working_list.pop(element)
-        elif median < target:
-            for element in working_list:
-                if element > median:
-                    working_list.pop(element)
-        elif working_list == []:
-            print('Not found')
-        print(working_list)
+def get_midpoint(start, end):
+    length = end - start
+    midpoint = start + int(length / 2)
+    return midpoint
+    
+keep_going = True
+start = 0
+end = len(order)-1
+
+target = int(input('Enter a value to search for :'))
+
+print()
+
+while keep_going:
+    #print('Iteration, start =', start, 'end =', end)
+    print('Iteration running...')
+    midpoint_pos = get_midpoint(start, end)
+    midpoint = order[midpoint_pos]
+    if midpoint == target:
+        print('Value', target, 'found at position', midpoint_pos)
+        keep_going = False
+    elif midpoint > target:
+        end = midpoint_pos
+        if start == end:
+            print('Value', target, 'too low')
+            keep_going = False
+    elif midpoint < target:
+        start = midpoint_pos
+        if end - start == 1:
+            if order[end] == target:
+                print('Value', target, 'found at position', end)
+            else:
+                print('Value', target, 'too high')
+            keep_going = False
