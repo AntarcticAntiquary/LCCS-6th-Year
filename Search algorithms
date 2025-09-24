@@ -16,3 +16,31 @@ def linear_search_for (target, the_list): # Function to search linearly through 
     else: # If target is found in one position
         print('Value', target, 'found at position', index_list[0])
     return index_list # Return position(s) target was found at
+
+
+# Binary search algorithm
+# Works only with a sorted, numerical list
+# In progress
+
+ordered_nums = [3, 17, 21, 39, 57, 63, 71, 100]
+
+def binary_search (target, the_list):
+    keep_going = True
+    working_list = the_list
+    index = -1
+    while keep_going:
+        length = len(working_list)
+        median = working_list[int(length/2)]
+        if median == target:
+            index = the_list.index(target)
+        elif median > target:
+            for element in working_list:
+                if element < median:
+                    working_list.pop(element)
+        elif median < target:
+            for element in working_list:
+                if element > median:
+                    working_list.pop(element)
+        elif working_list == []:
+            print('Not found')
+        print(working_list)
