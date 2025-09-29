@@ -1,0 +1,29 @@
+# Selection sort
+
+import random as r
+
+def select_sort(List):
+    unsorted = List
+    keep_going = True
+    for i in range(len(List)):
+        workings = List[i]
+        swap_index = 0
+        swap_value = workings
+        for j in range(i, len(List)):
+            if List[j] < swap_value:
+                swap_index = j
+                swap_value = List[j]
+        if swap_index != 0:
+            List[i] = swap_value
+            List[swap_index] = workings
+        print(List)
+    return List
+                
+unordered = []
+
+for i in range(r.randint(5,15)):
+    unordered.append(r.randint(0,100))
+    
+print(unordered)
+print()
+select_sort(unordered)
