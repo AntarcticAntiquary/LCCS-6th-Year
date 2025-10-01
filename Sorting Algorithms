@@ -18,7 +18,20 @@ def select_sort(List):
             List[swap_index] = workings
         print(List)
     return List
-                
+
+def insert_sort(List):
+    sorted_list = []
+    for element in List:
+        done_with = False
+        for j in range(len(sorted_list)):
+            if element < sorted_list[j]:
+                sorted_list.insert(j, element)
+                done_with = True
+                break
+        if not done_with:
+            sorted_list.append(element)
+        print(List, sorted_list)
+
 unordered = []
 
 for i in range(r.randint(5,15)):
