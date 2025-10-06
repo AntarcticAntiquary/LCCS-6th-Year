@@ -32,6 +32,24 @@ def insert_sort(List):
             sorted_list.append(element)
         print(List, sorted_list)
 
+def quicksort(List):
+    if len(List) <= 1:
+        return List
+    pivot = List[-1]
+    higher = []
+    lower = []
+    equal = []
+    for element in List:
+        if element == pivot:
+            equal.append(element)
+        elif element < pivot:
+            lower.append(element)
+        elif element > pivot:
+            higher.append(element)
+    lower = quicksort(lower)
+    higher = quicksort(higher)
+    return lower + equal + higher
+
 unordered = []
 
 for i in range(r.randint(5,15)):
