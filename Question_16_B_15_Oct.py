@@ -12,11 +12,9 @@ def euro_format(price):
     
 
 def display_table(Dict):
-    print()
-    print('=== Your Shopping List ===')
     for item, price in Dict.items():
         price = euro_format(price)
-        print(f'{item}\t\t{price}')
+        print(f'{item}\t\t\t{price}')
 
 items = {} # Dictionary to store items and prices together
 
@@ -31,6 +29,8 @@ for i in range(no): # Add the specified number of items to the list
     price = round(float(input('Enter this item\'s price :')), 2) # Round to 2 for money
     items[name] = price
     
+print()
+print('=== Your Shopping List ===')
 display_table(items)
 
 print()
@@ -55,6 +55,7 @@ print(f'Most expensive item: {maxItem} ({euro_format(maximum)})')
 print(f'Least expensive item: {minItem} ({euro_format(minimum)})')
 print(f'Average price per item: {euro_format(average)}')
 
+print()
 budget = round(float(input('Enter your budget :')), 2)
 if total > budget:
     print('You are over budget!')
@@ -65,5 +66,7 @@ else:
 
 print()
 print('=== Items by Price (High to Low) ===')
-sortedDict = sorted(items.items(), key  = lambda item : item[1])
+sortedDict = {}
+for key in sorted(items, key = items.get):
+    sortedDict[key] = items[key]
 display_table(sortedDict)
