@@ -16,6 +16,7 @@ def get_grade(percentage):
 username = username()
 print(f'Welcome, {username}, to the student result calculator') # part(iv)
 
+print()
 student_name = input("Please enter the students name: ")
 #student_score = int(input("Please enter the students mark: "))
 student_score = float(input("Please enter the students mark: ")) # part (i)
