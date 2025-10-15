@@ -24,4 +24,4 @@ exam_total = int(input('Please enter the total amount of marks going for the exa
 score_as_a_percentage=round((student_score/exam_total)*100, 1) # part (iii)
 grade = get_grade(score_as_a_percentage)
 
-print(student_name,"scored",score_as_a_percentage,"%. They got a" + grade + '.')
+print(student_name,"scored",score_as_a_percentage,"%. They got a " + grade + '.')
