@@ -1,0 +1,116 @@
+# Revision task 1
+# String Manipulation
+# by Daniel Lewis
+
+vowels = {'a', 'e', 'i', 'o', 'u'}
+consonants = {'q', 'w', 'r', 't', 'y', 'p', 's', 'd', 'f', 'g',
+              'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'}
+letters = vowels | consonants
+
+#sentence = 'The quick brown Fox jumps over the lazy Dog'
+#sentence = 'Python programming is fun'
+sentence = input('Enter a sentence to analyse :')
+print()
+
+lowercase = sentence.lower()
+
+# part (i) - Count vowels & consonants
+vowCount = 0
+conCount = 0
+for char in lowercase:
+    if char in vowels:
+        vowCount += 1
+    elif char in consonants:
+        conCount += 1
+print(f'There are {vowCount} vowels and {conCount} consonants.')
+print()
+
+# part (ii) - reverse each word
+listsentence = sentence.split()
+for word in listsentence:
+    word = word[::-1]
+    print(word, end = ' ')
+print()
+print()
+    
+# part (iii) - Find longest word
+wordlength = 0
+longword = ''
+for word in listsentence:
+    if len(word) > wordlength:
+        wordlength = len(word)
+        longword = word
+print(f'The longest word is {longword} ({wordlength} letters)')
+print()
+
+# part (iv) - Check for palindrome
+palindromer = list(lowercase)
+for char in palindromer:
+    if char not in letters:
+        palindromer.remove(char)
+print(palindromer)
+print(palindromer[::-1])
+if palindromer == palindromer[::-1]:
+    print('It is a palindrome')
+else:
+    print('It is not a palindrome')
+
+import random as r
+
+def quicksort(List):
+    if len(List) <= 1:
+        return List
+    pivot = List[-1]
+    higher = []
+    lower = []
+    equal = []
+    for element in List:
+        if element == pivot:
+            equal.append(element)
+        elif element < pivot:
+            lower.append(element)
+        elif element > pivot:
+            higher.append(element)
+    lower = quicksort(lower)
+    higher = quicksort(higher)
+    return higher + equal + lower
+
+randlist = []
+
+for i in range(15):
+    randlist.append(r.randint(1, 100))
+
+maximum = randlist[0]
+minimum = 101
+total = 0
+evens = []
+uniques = []
+print('Original list:', end = ' ')
+for num in randlist:
+    if num > maximum:
+        maximum = num
+    elif num < minimum:
+        minimum = num
+    total += num
+    if num % 2 == 0:
+        evens.append(num)
+    if num not in uniques:
+        uniques.append(num)
+    print(num, end = ', ')
+print()
+aftersort = quicksort(uniques)
+print(f'The max number is {maximum} and the min number is {minimum}')
+mean = round(total / len(randlist), 2)
+print(f'The average is {mean}.')
+print(f'The even numbers are:', end = ' ')
+for num in evens:
+    print(num, end = ', ')
+print()
+print(f'After removing duplicates:', end = ' ')
+for num in uniques:
+    print(num, end = ', ')
+print()
+print('List sorted in descending order:', end = ' ')
+for num in aftersort:
+    print(num, end = ', ')
+print()
